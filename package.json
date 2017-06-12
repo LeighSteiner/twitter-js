@@ -1,0 +1,25 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "y"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeighSteiner/twitter-js.git"
+  },
+  "keywords": [
+    "twitter"
+  ],
+  "author": "leigh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeighSteiner/twitter-js/issues"
+  },
+  "homepage": "https://github.com/LeighSteiner/twitter-js#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
