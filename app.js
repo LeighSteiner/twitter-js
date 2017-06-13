@@ -40,9 +40,11 @@ app.use('/special/', function(req,res,next){
 })
 app.use(express.static('public')); 
 
-app.get('/stylesheets/style.css', function(req,res){
-	res.sendFile('/Users/Klen/twitter-js/public/stylesheets/style.css');
-})
+
+
+// app.get('/stylesheets/style.css', function(req,res){
+// 	res.sendFile('/Users/Klen/twitter-js/public/stylesheets/style.css');
+// })
 // app.get('/special/', function(req,res){
 // 	res.send('arent you special');
 // })

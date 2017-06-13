@@ -15,9 +15,14 @@
     <div class="col-md-9">
     
       <!-- display tweets here -->
-      {% for tweet in tweets %}
-        <li>{{tweet.content}}</li>
+<!--       {% for tweet in tweets %}
+        <li><img src = {{tweet.foo}}> <b>{{tweet.name}}</b>
+        	<br>{{tweet.content}}</li>
       {% endfor %}
+ -->
+      {% for tweet in tweets %}
+  		<li><a href="/users/{{tweet.name}}"><img src = {{tweet.foo}}><b>{{tweet.name}}</b><br></a> - {{tweet.content}}</li>
+		{% endfor %}
       
     </div>
   </div>

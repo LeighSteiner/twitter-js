@@ -36,7 +36,9 @@ body {
   padding-left: 15px;
   padding-right: 15px;
 }
-
+li {
+  color: #4286f4; 
+}
 code {
   font-size: 80%;
 }
