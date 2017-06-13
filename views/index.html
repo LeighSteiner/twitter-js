@@ -21,10 +21,21 @@
       {% endfor %}
  -->
       {% for tweet in tweets %}
-  		<li><a href="/users/{{tweet.name}}"><img src = {{tweet.foo}}><b>{{tweet.name}}</b><br></a> - {{tweet.content}}</li>
+  		<li><a href="/users/{{tweet.name}}"><img src = {{tweet.foo}}><b>{{tweet.name}}</b><br></a> <a href = "/tweets/{{tweet.id}}">- {{tweet.content}}</a></li>
 		{% endfor %}
       
     </div>
   </div>
     
+{% if showForm %}
+  <form action="/tweets" method="POST">
+    <label for="name_field">Name:</label>
+    <input name="name" type="text" id="name_field" />
+
+    <label for="text_field">Text:</label>
+    <input name="text" type="text" id="text_field" style="width: 350px;" />
+
+    <input type="submit" value="Submit" />
+  </form>
+{% endif %}
 {% endblock %}

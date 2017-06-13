@@ -2,6 +2,7 @@ const express = require( 'express' );
 const app = express();
 const nunjucks = require('nunjucks')
 const routes = require('./routes');
+const bodyParser = require('body-parser');
 
 app.listen(3000, function(){
 	console.log('listening on port 3000…');

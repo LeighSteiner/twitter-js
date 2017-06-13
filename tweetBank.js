@@ -2,7 +2,7 @@ const _ = require('lodash');
 const data = [];
 
 function add (name, content) {
-  data.push({ name: name, content: content, foo: "https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg"});
+  data.push({ name: name, content: content, foo: "https://pbs.twimg.com/profile_images/2450268678/olxp11gnt09no2y2wpsh_normal.jpeg", id : data.length});
 }
 
 function list () {
@@ -43,7 +43,7 @@ add('Leigh', 'nodemon is the greatest!');
 add('Leigh', 'my secret to looking youthful is hiding from the sun!');
 add('Kelaiya', 'i like javascript!');
 var capture = find({name: 'Kelaiya'});
-console.log(capture);
+console.log(data[0].id);
 
 
 
