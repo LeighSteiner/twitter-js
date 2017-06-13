@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon app.js", 
     "test": "y"
   },
   "repository": {
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/LeighSteiner/twitter-js#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "volleyball": "^1.4.1"
   }
 }
