@@ -1,23 +1,72 @@
-const router = require('express').Router();
-const tweetBank = require('../tweetBank');
+var something = require("pg");
+var postgresUrl = 'postgres://localhost/twitterdb';
+var client = new pg.Client(postgresUrl);
 
-router.get('/', function (req, res) {
-  let tweets = tweetBank.list();
-  res.render( 'index', { tweets: tweets, showForm : true } );
+'use strict';
+var express = require('express');
+var router = express.Router();
+var tweetBank = require('../tweetBank');
+
+module.exports = function makeRouterWithSockets (io) {
+
+  // a reusable function
+  function respondWithAllTweets (req, res, next){
+    var allTheTweets = tweetBank.list();
+    res.render('index', {
+      title: 'Twitter.js',
+      tweets: allTheTweets,
+      showForm: true
+    });
+  }
+
+  // here we basically treet the root view and tweets view as identical
+  router.get('/', respondWithAllTweets);
+  router.get('/tweets', respondWithAllTweets);
+
+  // single-user page
+  router.get('/users/:username', function(req, res, next){
+    var tweetsForName = tweetBank.find({ name: req.params.username });
+    res.render('index', {
+      title: 'Twitter.js',
+      tweets: tweetsForName,
+      showForm: true,
+      username: req.params.username
+    });
+  });
+
+  // single-tweet page
+  router.get('/tweets/:id', function(req, res, next){
+    var tweetsWithThatId = tweetBank.find({ id: Number(req.params.id) });
+    res.render('index', {
+      title: 'Twitter.js',
+      tweets: tweetsWithThatId // an array of only one element ;-)
+    });
+  });
+
+  // create a new tweet
+  router.post('/tweets', function(req, res, next){
+    var newTweet = tweetBank.add(req.body.name, req.body.content);
+    io.sockets.emit('new_tweet', newTweet);
+    res.redirect('/');
+  });
+
+  // // replaced this hard-coded route with general static routing in app.js
+  // router.get('/stylesheets/style.css', function(req, res, next){
+  //   res.sendFile('/stylesheets/style.css', { root: __dirname + '/../public/' });
+  // });
+
+  return router;
+}
+
+
+// connecting to the `postgres` server
+client.connect();
+
+// make the client available as a Node module
+module.exports = client;
+
+client.query('SELECT * FROM tweets', function (err, result) {
+  if (err) return next(err); // pass errors to Express
+  var tweets = result.rows;
+  res.render('index', { title: 'Twitter.js', tweets: tweets, showForm: true });
 });
-router.get('/users/:name', function(req, res) {
-  var name = req.params.name;
-  var list = tweetBank.find( {'name': name} );
-  // console.log('name', name, 'list', list);
-  res.render( 'index', { tweets: list } );
-});
-
-router.get('/tweets/:id', function(req,res){
-	var id = req.params.id;
-	id = parseInt(id);
-	var tweet = tweetBank.find({'id': id});
-	
-	res.render('index', {tweets: tweet});
-})
-module.exports = router;
-
