@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LeighSteiner/twitter-js.git"
+    "url": "git+https://github.com/kelaiya/twitter-js-1.git"
   },
   "keywords": [
     "twitter"
@@ -17,9 +17,9 @@
   "author": "leigh",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LeighSteiner/twitter-js/issues"
+    "url": "https://github.com/kelaiya/twitter-js-1/issues"
   },
-  "homepage": "https://github.com/LeighSteiner/twitter-js#readme",
+  "homepage": "https://github.com/kelaiya/twitter-js-1#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
